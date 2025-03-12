@@ -25,6 +25,12 @@ class RandomWallpaperPlugin(Star):
         try:
             response = requests.get(selected_url, stream=True, timeout=10)
             response.raise_for_status()  # 检查请求是否成功
+            
+            # 检查响应头中的 Content-Type 是否为 image/jpeg
+            content_type = response.headers.get('Content-Type', '')
+            if not content_type.startswith('image/jpeg'):
+                raise ValueError("返回的内容不是JPG格式的图片")
+            
             image_data = response.content
             # 发送图片
             yield event.image_result(image_data)
