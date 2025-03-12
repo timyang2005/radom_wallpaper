@@ -16,7 +16,7 @@ class RandomWallpaperPlugin(Star):
 
     # 注册指令的装饰器。指令名为 random_wallpaper。注册成功后，发送 /随机壁纸 就会触发这个指令
     @filter.command("随机壁纸")
-    async def random_wallpaper(self, event: AstrMessageEvent, *args):
+    async def random_wallpaper(self, event: AstrMessageEvent):
         '''随机发送一张壁纸'''
         # 随机选择一个图片链接
         selected_url = random.choice(image_urls)
